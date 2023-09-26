@@ -8,11 +8,11 @@ mkdir target
 
 # Build and run the "foreach" code
 gcc ./src/foreach.c -o ./target/foreach.exe
-./target/foreach
+./target/foreach.exe
 
 # Build and run the "string" code
 gcc ./src/string.c -o ./target/string.exe
-./target/string
+./target/string.exe
 
 # Remove binaries
 # rm ./target/foreach
