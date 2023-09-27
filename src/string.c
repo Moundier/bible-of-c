@@ -2,6 +2,7 @@
 
 // Define a custom type for an array of strings
 typedef const char** Array_of_string;
+typedef const char* String;
 
 int main() {
   // Create an array of strings using the custom type
@@ -32,6 +33,23 @@ int main() {
   // Access and print the strings in the array
   for (int i = 0; string_list[i] != NULL; i++) {
     printf("String 2.%d: %s\n", i + 1, string_list[i]);
+  }
+
+  // Third semantical String typedef
+  String luff = "Luff";
+  String zoro = "Zoro";
+  String nami = "Nami";
+
+  Array_of_string mugiwara_pirates = (const char*[]) {
+    luff,
+    zoro,
+    nami,
+    NULL // Sentinel for the end of the array
+  };
+
+  // Access and print the strings in the array
+  for (int i = 0; mugiwara_pirates[i] != NULL; i++) {
+    printf("String 3.%d: %s\n", i + 1, mugiwara_pirates[i]);
   }
 
   // So we can conver a char pointer array to a char pointer pointer
