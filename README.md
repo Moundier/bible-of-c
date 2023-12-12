@@ -1,17 +1,17 @@
-# bible-of-c
+# bundle-of-c
 
 ### Abstract
-Just a collection of code, bundled together.
+Just a collection of C code.
 
 ### Objectives
-- [ ] Item 1: A program that retrieves object entries (but now identified with unique id)
-- [x] Item 2: foreach loop
-- [ ] Item 3 (checked)
-- [ ] Item 4
+- Feat a `foreach` loop
+- Feat lamba like functions
+- String Arrays with pointer dereference
 
 ### Made with
 * The C Programming language
 * The GCC Compiler
 
-### In memory of
+### In memory of (meme)
+- Linus Torvalds  
 - Terry Davis
