@@ -1,4 +1,4 @@
-# bundle-of-c
+# universe-in-c
 
 ### Abstract
 Just a collection of C code.
