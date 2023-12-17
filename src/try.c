@@ -5,36 +5,41 @@ struct Exception {
   int type;
 };
 
+struct Exception* exception_info = NULL;
+
 typedef void (*ExceptionHandler)(struct Exception*);
 
 void handle_exception(struct Exception* exception) {
   printf("Exception caught: Type %d\n", exception->type);
+  free(exception_info);
+  exception_info == NULL;
+  exit(1); // Finish before "core dumped" compiler message
 }
 
-struct Exception* exception_info = NULL;
-ExceptionHandler exception_handler = handle_exception;
+// Insert the function into the function pointer
+ExceptionHandler exception_handler = handle_exception; 
 
-// Function pointer for exception check
-typedef int (*ExceptionCheck)();
-
-int check_exception() {
-  return (exception_info != NULL) ? 1 : 0;
+int found_exception() {
+  return (exception_info == NULL) ? 0 : 1;
 }
 
 #define TRY \
-  struct Exception exception; \
-  if (check_exception() == 0) \
+  { \
+    struct Exception exception; \
+    if (found_exception() == 0) 
 
 #define CATCH(exception_type) \
-  else if (exception_info->type == exception_type)
+    else if (exception_info->type == exception_type)
 
 #define END_TRY \
-  free(exception_info); \
-  exception_info = NULL;
+    free(exception_info); \
+    exception_info = NULL; \
+  }
 
 #define THROW(exception_type) \
   do { \
-    if (!(exception_info = (struct Exception*)malloc(sizeof(struct Exception)))) { \
+    exception_info = (struct Exception*) malloc(sizeof(struct Exception)); \
+    if (!exception_info) { \
       fprintf(stderr, "Failed to allocate memory for exception_info\n"); \
       exit(1); \
     } \
@@ -45,12 +50,14 @@ int check_exception() {
   } while (0)
 
 int main() {
+
   TRY {
-    // Code that may throw an exception
     int divisor = 0;
+
     if (divisor == 0) {
-      THROW(1); // 1 represents a divide by zero exception
+      THROW(1);
     }
+
     int result = 10 / divisor;
     printf("Result: %d\n", result);
   }
