@@ -1,34 +1,31 @@
 #include <stdio.h>
-#include <stdbool.h>
 
-#define false 0
-#define true 1
+#define system_out_print printf
+#define EXIT_SUCCESS 0
 
-#define ELEMENT_SIZE(arr) (sizeof(arr) / sizeof(arr[0]))
+#define array_foreach(element, array) \
+    unsigned int size = sizeof(array) / sizeof(array[0]); \
+    for (unsigned int index = 0; index < size && (element = array[index], 1); index++)
 
-#define foreach(item, array) \
-  for (int i = 0, found = false; i < ELEMENT_SIZE(array) && !found; i++) \
-    for (item = array[i], found = true; found; found = false)
-      // It stops iterating when a condition (such as !found) becomes true
+#define string_foreach(element, collection) \
+    for (element = collection; *element != '\0'; element++)
 
-int main() {
-  
-  // Sum reaches untill 3
-  int number_list[] = {1, 2, 3, 4, 5};
-  int size = sizeof(number_list) / sizeof(number_list[0]);
+int main(int argc, char** argv) {
 
-  int sum = 0;
-  int num;
+    unsigned int numbers[] = {1, 2, 3, 4, 5}, num = 0;
 
-  foreach(num, number_list) {
-    sum += num;
-    if (num == 3) {
-      printf("Found 3, breaking the loop\n");
-      break;
-    } 
-  }
+    array_foreach(num, numbers) {
+      system_out_print("%d ", num);
+    }
 
-  printf("Sum of numbers: %d\n", sum);
+    system_out_print("\n");
+    char* str = "Hello, World!", *ptr;
 
-  return 0;
+    string_foreach(ptr, str) {
+      system_out_print("%c ", *ptr);
+    }
+
+    system_out_print("\n");
+
+    return EXIT_SUCCESS;
 }

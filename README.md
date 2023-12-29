@@ -13,5 +13,5 @@ Just a collection of C code.
 * The GCC Compiler
 
 ### In memory of (meme)
-- Linus Torvalds  
-- Terry Davis
+- Linus Torvalds (Meme)
+- Terry Davis (Also meme)

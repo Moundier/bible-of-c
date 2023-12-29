@@ -26,7 +26,7 @@ int found_exception() {
 #define TRY \
   { \
     struct Exception exception; \
-    if (found_exception() == 0) 
+    if (found_exception() == 0) \
 
 #define CATCH(exception_type) \
     else if (exception_info->type == exception_type)
@@ -50,6 +50,9 @@ int found_exception() {
   } while (0)
 
 int main() {
+
+  // A Very dummy implementation
+  // There has to be a better way
 
   TRY {
     int divisor = 0;
